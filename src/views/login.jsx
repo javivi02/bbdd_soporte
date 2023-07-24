@@ -22,7 +22,7 @@ export const Login = () => {
 
       const data = await signIn(usuario, password)
       //setUser({ login: true, ...data })
-      localStorage.setItem('user', JSON.stringify({ login: true, ...data }))
+      localStorage.setItem('user', JSON.stringify(data))
       navigate('/dashboard', { replace: true })
 
     } catch (error) {

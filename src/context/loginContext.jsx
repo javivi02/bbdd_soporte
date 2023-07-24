@@ -4,9 +4,7 @@ export const LoginContext = React.createContext({})
 
 export const LoginContextProvider = ({ children }) => {
 
-  const [user, setUser] = useState({
-    login: false,
-  })
+  const [user, setUser] = useState({})
 
   return <LoginContext.Provider value={{ user, setUser }}>{children}</LoginContext.Provider>
 }
