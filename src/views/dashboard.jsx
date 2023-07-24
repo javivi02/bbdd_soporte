@@ -10,17 +10,13 @@ export const Dashboard = () => {
   const navigate = useNavigate()
   const { Usuario } = user
 
-  const [portatiles, setPortatiles] = useState([])
-
   useEffect(() => {
 
     const loggedUserJSON = window.localStorage.getItem('user')
 
     if (loggedUserJSON) {
       const userStorage = JSON.parse(loggedUserJSON)
-      const { token } = userStorage
-      getPortatiles(token).then(setPortatiles)
-      setUser(user)
+      setUser(userStorage)
     }
 
   }, [])
@@ -40,7 +36,7 @@ export const Dashboard = () => {
         <h1 className="text-4xl font-bold">BBDD SOPORTE</h1><span>{Usuario}</span>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleLogout}>Logout</button>
 
-        <Tabla portatiles={portatiles}/>
+
       </div>
     </>
   )
