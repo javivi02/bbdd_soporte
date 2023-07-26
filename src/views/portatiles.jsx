@@ -1,27 +1,27 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Tabla } from '../components/tabla.jsx'
-import { LoginContext } from '../context/loginContext.jsx'
 import { getPortatiles } from '../service/portatiles.js'
+import { useLocalStorage } from '../hooks/useLocalStorage.js'
 
 export const Portatiles = ({ props }) => {
-
-  const { user, setUser } = useContext(LoginContext)
-  const { token } = user
+  const { Usuario, token } = useLocalStorage('user', {})
   const [portatiles, setPortatiles] = useState([])
 
   useEffect(() => {
 
     getPortatiles(token).then(setPortatiles)
+
   }, [])
 
-    return(
+  return (
 
-        <>
+    <>
+      <h1 className="text-4xl font-bold">{Usuario}</h1><span></span>
 
-          <Tabla portatiles={portatiles}/>
+      <Tabla portatiles={portatiles}/>
 
-        </>
+    </>
 
-    );
+  )
 }
 
