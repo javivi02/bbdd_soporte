@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Tabla } from '../components/tabla.jsx'
 import { getPortatiles } from '../service/portatiles.js'
-import { useLocalStorage } from '../hooks/useLocalStorage.js'
+import { LoginContext } from '../context/loginContext.jsx'
+
 
 export const Portatiles = ({ props }) => {
-  const { Usuario, token } = useLocalStorage('user', {})
+
+  //const { Usuario, token } = useLocalStorage('user', {})
+  //const { Usuario, token, setUser } = useUser()
+  const { user: { Usuario, token } } = useContext(LoginContext)
   const [portatiles, setPortatiles] = useState([])
 
   useEffect(() => {

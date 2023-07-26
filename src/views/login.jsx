@@ -5,7 +5,7 @@ import { LoginContext } from '../context/loginContext.jsx'
 
 export const Login = () => {
 
-  //const { setUser } = useContext(LoginContext)
+  const { setUser } = useContext(LoginContext)
 
   const navigate = useNavigate()
 
@@ -21,7 +21,7 @@ export const Login = () => {
     try {
 
       const data = await signIn(usuario, password)
-      //setUser({ login: true, ...data })
+      setUser(data)
       localStorage.setItem('user', JSON.stringify(data))
       navigate('/dashboard', { replace: true })
 

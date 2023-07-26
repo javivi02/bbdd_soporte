@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useLocalStorage } from '../hooks/useLocalStorage.js'
+import { LoginContext } from '../context/loginContext.jsx'
+
 
 export const Dashboard = () => {
 
-  const { Usuario, token } = useLocalStorage('user', {})
+  //const { Usuario, token } = useLocalStorage('user', {})
+  //const { Usuario, token, setUser } = useUser()
+  const { user: { Usuario, token }, setUser } = useContext(LoginContext)
   const navigate = useNavigate()
 
-  console.log('Cargando Dashboard')
+  useEffect(() => {
+
+  }, [Usuario, token])
+
+
+  console.log()
 
   const handleLogout = () => {
+    setUser(null)
     localStorage.removeItem('user')
     navigate('/login', { replace: true })
 

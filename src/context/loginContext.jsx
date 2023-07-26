@@ -1,10 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export const LoginContext = React.createContext({})
 
-export const LoginContextProvider = ({ children }) => {
+const initialState = JSON.parse(localStorage.getItem('user')) ?? {}
 
-  const [user, setUser] = useState({})
+export const LoginContextProvider = ({ children }) => {
+  const [user, setUser] = useState(initialState)
+
+  // Cargar el usuario del localStorage segun cargue la página si no lo hago así puede tener problemas con la asincronía
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('user')))
+  }, [])
 
   return <LoginContext.Provider value={{ user, setUser }}>{children}</LoginContext.Provider>
 }
