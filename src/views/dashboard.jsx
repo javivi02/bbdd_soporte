@@ -10,13 +10,6 @@ export const Dashboard = () => {
   const { user: { Usuario, token }, setUser } = useContext(LoginContext)
   const navigate = useNavigate()
 
-  useEffect(() => {
-
-  }, [Usuario, token])
-
-
-  console.log()
-
   const handleLogout = () => {
     setUser(null)
     localStorage.removeItem('user')

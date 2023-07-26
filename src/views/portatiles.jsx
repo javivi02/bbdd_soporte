@@ -3,7 +3,6 @@ import { Tabla } from '../components/tabla.jsx'
 import { getPortatiles } from '../service/portatiles.js'
 import { LoginContext } from '../context/loginContext.jsx'
 
-
 export const Portatiles = ({ props }) => {
 
   //const { Usuario, token } = useLocalStorage('user', {})
@@ -13,7 +12,9 @@ export const Portatiles = ({ props }) => {
 
   useEffect(() => {
 
-    getPortatiles(token).then(setPortatiles)
+    getPortatiles(token)
+      .then(setPortatiles)
+      .catch(() => console.log('Toquen expirado, redirigir a login'))
 
   }, [])
 
