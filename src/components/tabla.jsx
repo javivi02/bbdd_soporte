@@ -1,7 +1,5 @@
-// eslint-disable-next-line react/prop-types
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Modal } from './modal.jsx'
-import { LoginContext } from '../context/loginContext.jsx'
 
 export const Tabla = ({ portatiles }) => {
 
@@ -20,22 +18,22 @@ export const Tabla = ({ portatiles }) => {
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-2">
               Portatil
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-2">
               Direccion IP
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-1">
               Pool
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-3 overflow-x-hidden overflow-y-hidden">
               Observaciones
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-1">
               <span className="sr-only">View</span>
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-1">
               <span className="sr-only">Edit</span>
             </th>
           </tr>
@@ -50,17 +48,17 @@ export const Tabla = ({ portatiles }) => {
                   <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {Portatil}
                   </th>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 w-2">
                     {Direccion_ip_torre}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 w-2">
                     {Pool}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 w-3">
                     {Observaciones}
                   </td>
 
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-6 py-4 text-right w-1">
                     <button onClick={(() => handleView(PortatilID))}
                             className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
 
@@ -74,7 +72,7 @@ export const Tabla = ({ portatiles }) => {
                     </button>
                   </td>
 
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-6 py-4 text-right w-1">
                     <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
 
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}

@@ -26,6 +26,7 @@ export const Dashboard = () => {
         </button>
 
         <Link to={'/portatiles'}>Portatiles</Link>
+        <Link to={'/portatiles2'}>Portatiles2</Link>
 
 
       </div>
