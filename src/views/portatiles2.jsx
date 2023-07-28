@@ -13,15 +13,6 @@ export const Portatiles2 = ({ props }) => {
   const { user: { Usuario, token } } = useContext(LoginContext)
   const [portatiles, setPortatiles] = useState([])
 
-  const [buscar, setBuscar] = useState('')
-  const [currentPage, setCurrentPage] = useState(1)
-  const recordPage = 20
-  const lastIndex = currentPage * recordPage
-  const firsIndex = lastIndex - recordPage
-  const records = portatiles.slice(firsIndex, lastIndex)
-  const npage = Math.ceil(portatiles.length / recordPage)
-  const numbers = [...Array(npage + 1).keys()].slice(1)
-
   useEffect(() => {
 
     getPortatiles(token)
@@ -33,7 +24,27 @@ export const Portatiles2 = ({ props }) => {
 
   }, [])
 
+  const filtroPortatiles = () => {
+
+    if (buscar.length === 0) {
+      return portatiles
+    }
+
+    return portatiles.filter(portatil => portatil.Portatil.toLowerCase().includes(buscar.toLowerCase()))
+
+  }
+
+  const [buscar, setBuscar] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const recordPage = 20
+  const lastIndex = currentPage * recordPage
+  const firsIndex = lastIndex - recordPage
+  const records = filtroPortatiles().slice(firsIndex, lastIndex)
+  const npage = Math.ceil(filtroPortatiles().length / recordPage)
+  const numbers = [...Array(npage + 1).keys()].slice(1)
+
   const handleBuscar = ({ target }) => {
+    setCurrentPage(1)
     setBuscar(target.value)
   }
 
@@ -85,7 +96,7 @@ export const Portatiles2 = ({ props }) => {
             return (
               <button key={i}
                       onClick={() => pagina(e)}
-                      className={`${currentPage === e ? 'z-50 bg-amber-400' : ''}flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}>
+                      className={`${currentPage === e ? 'flex items-center justify-center px-4 h-10 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white' : 'flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'}`}>
                 {i + 1}
               </button>
             )
@@ -104,7 +115,6 @@ export const Portatiles2 = ({ props }) => {
           </button>
         </li>
       </ul>
-
 
       <Tabla portatiles={records}/>
 

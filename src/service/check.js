@@ -2,7 +2,7 @@ export const checkJWT = async (token) => {
 
   try {
 
-    const response = await fetch('http://localhost:3000/api/check', {
+    const response = await fetch('http://localhost:3333/api/check', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`

@@ -17,7 +17,6 @@ export const Portatiles = ({ props }) => {
   const [currentPage, setCurrentPage] = useState(0)
   const [buscar, setBuscar] = useState('')
   const [paginacion, setPaginacion] = useState(20)
-  const records = filtroPortatiles()
 
   useEffect(() => {
 
@@ -101,7 +100,7 @@ export const Portatiles = ({ props }) => {
         portatilPagina={portatilPagina()}
       />
 
-      <Tabla portatiles={records}/>
+      <Tabla portatiles={filtroPortatiles()}/>
 
     </>
 
