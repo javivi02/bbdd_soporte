@@ -26,14 +26,16 @@ export const Portatiles3 = ({ props }) => {
 
   }
 
-  const itemsPerPage = 10
+  const itemsPerPage = 20
   const [itemOffset, setItemOffset] = useState(0)
   const endOffset = itemOffset + itemsPerPage
   const currentItems = filtroPortatiles().slice(itemOffset, endOffset)
   const pageCount = Math.ceil(filtroPortatiles().length / itemsPerPage)
 
   const handlePageClick = (event) => {
+    console.log(event)
     const newOffset = (event.selected * itemsPerPage) % portatiles.length
+    console.log(newOffset)
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     )
@@ -49,7 +51,7 @@ export const Portatiles3 = ({ props }) => {
         navigate('/login', { replace: true })
       })
 
-  }, [])
+  }, [itemOffset])
 
   const handleBuscar = ({ target }) => {
     setBuscar(target.value)
@@ -66,14 +68,13 @@ export const Portatiles3 = ({ props }) => {
         <h1 className="text-4xl font-bold ">{Usuario}<span> - {portatiles.length}</span></h1>
         <input type="text"
                value={buscar}
-               onSelect={handleSelect}
+               // onSelect={handleSelect}
                onChange={handleBuscar}
                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                placeholder="Buscar ..."/>
 
       </div>
 
-      <Tabla portatiles={currentItems}/>
       <div className="flex justify-center">
         <ReactPaginate
           breakLabel="..."
@@ -81,14 +82,15 @@ export const Portatiles3 = ({ props }) => {
           onPageChange={handlePageClick}
           pageCount={pageCount}
           previousLabel="<"
-          className={'flex items-center h-10 text-base p-4 gap-3'}
+          className={'flex items-center p-4 gap-3'}
           pageClassName={'bg-blue-500 text-white px-4 py-2 rounded-lg'}
           previousClassName={'bg-blue-500 text-white px-4 py-2 rounded-lg'}
           nextClassName={'bg-blue-500 text-white px-4 py-2 rounded-lg'}
-          activeLinkClassName={'text-yellow-300 font-extrabold'}
+          activeClassName={'bg-blue-500 text-white px-4 py-2 rounded-lg'}
         />
 
       </div>
+      <Tabla portatiles={currentItems}/>
     </>
 
   )

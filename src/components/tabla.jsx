@@ -18,7 +18,11 @@ export const Tabla = ({ portatiles }) => {
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th scope="col" className="px-6 py-3 w-2">
+            <th className="px-4 py-3 w-1">
+              <input
+                type="checkbox"/>
+            </th>
+            <th scope="col" className="px-4 py-3 w-2">
               Portatil
             </th>
             <th scope="col" className="px-6 py-3 w-2">
@@ -45,9 +49,13 @@ export const Tabla = ({ portatiles }) => {
               return (
                 <tr key={PortatilID}
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                  <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <td className="px-4 py-4">
+                    <input
+                      type="checkbox"/>
+                  </td>
+                  <td scope="row" className="px-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {Portatil}
-                  </th>
+                  </td>
                   <td className="px-6 py-4 w-2">
                     {Direccion_ip_torre}
                   </td>
