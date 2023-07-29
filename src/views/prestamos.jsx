@@ -1,25 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { TablaPortatiles } from '../components/tablaPortatiles.jsx'
-import { getPortatiles } from '../service/portatiles.js'
 import { LoginContext } from '../context/loginContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import { Loading } from '../components/loading.jsx'
+import { getPrestamos } from '../service/prestamos.js'
+import { TablaPrestamos } from '../components/tablaPrestamos.jsx'
 
-export const Portatiles2 = ({ props }) => {
+export const Prestamos = ({ props }) => {
 
   //const { Usuario, token } = useLocalStorage('user', {})
   //const { Usuario, token, setUser } = useUser()
 
   const navigate = useNavigate()
   const { user: { Usuario, token } } = useContext(LoginContext)
-  const [portatiles, setPortatiles] = useState([])
+  const [prestamos, setPrestamos] = useState([])
   const [loading, setLoading] = useState(true)
+
+  //const { data, loading, error } = useFetch('http://localhost:3333/api/prestamos', token)
 
   useEffect(() => {
 
-    getPortatiles(token)
-      .then((data) =>{
-        setPortatiles(data)
+    getPrestamos(token)
+      .then((data) => {
+        setPrestamos(data)
         setLoading(false)
 
       })
@@ -30,21 +32,19 @@ export const Portatiles2 = ({ props }) => {
 
   }, [])
 
-
-
   const filtroPortatiles = () => {
 
     if (buscar.length === 0) {
-      return portatiles
+      return prestamos
     }
 
-    return portatiles.filter(portatil => portatil.Portatil.toLowerCase().includes(buscar.toLowerCase()))
+    return prestamos.filter(portatil => portatil.Portatil.toLowerCase().includes(buscar.toLowerCase()))
 
   }
 
   const [buscar, setBuscar] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const recordPage = 10
+  const recordPage = 4
   const lastIndex = currentPage * recordPage
   const firsIndex = lastIndex - recordPage
   const records = filtroPortatiles().slice(firsIndex, lastIndex)
@@ -86,7 +86,7 @@ export const Portatiles2 = ({ props }) => {
 
     <>
       <div className={'flex mb-4 p-4 justify-between'}>
-        <h1 className="text-4xl font-bold ">{Usuario}<span> - {portatiles.length}</span></h1>
+        <h1 className="text-4xl font-bold ">{Usuario}<span> - {prestamos.length}</span></h1>
         <input type="text"
                value={buscar}
                onChange={handleBuscar}
@@ -95,7 +95,7 @@ export const Portatiles2 = ({ props }) => {
 
       </div>
 
-      <TablaPortatiles portatiles={records}/>
+      <TablaPrestamos prestamos={records}/>
 
       <div className="flex justify-end">
 
@@ -183,10 +183,8 @@ export const Portatiles2 = ({ props }) => {
           </li>
 
 
-
         </ul>
       </div>
-
 
 
     </>

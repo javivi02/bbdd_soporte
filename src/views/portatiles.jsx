@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Tabla } from '../components/tabla.jsx'
+import { TablaPortatiles } from '../components/tablaPortatiles.jsx'
 import { getPortatiles } from '../service/portatiles.js'
 import { LoginContext } from '../context/loginContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import { Paginacion } from '../components/paginacion.jsx'
+import { Loading } from '../components/loading.jsx'
 
 export const Portatiles = ({ props }) => {
 
   //const { Usuario, token } = useLocalStorage('user', {})
   //const { Usuario, token, setUser } = useUser()
 
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
   const { user: { Usuario, token } } = useContext(LoginContext)
 
@@ -21,13 +23,18 @@ export const Portatiles = ({ props }) => {
   useEffect(() => {
 
     getPortatiles(token)
-      .then(setPortatiles)
+      .then((data) => {
+        setLoading(false)
+        setPortatiles(data)
+      })
       .catch(() => {
         console.log('Toquen expirado, redirigir a login')
         navigate('/login', { replace: true })
       })
 
   }, [])
+
+  if (loading) return <Loading/>
 
   const filtroPortatiles = () => {
 
@@ -100,7 +107,7 @@ export const Portatiles = ({ props }) => {
         portatilPagina={portatilPagina()}
       />
 
-      <Tabla portatiles={filtroPortatiles()}/>
+      <TablaPortatiles portatiles={filtroPortatiles()}/>
 
     </>
 

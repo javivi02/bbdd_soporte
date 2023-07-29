@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Tabla } from '../components/tabla.jsx'
+import { TablaPortatiles } from '../components/tablaPortatiles.jsx'
 import { getPortatiles } from '../service/portatiles.js'
 import { LoginContext } from '../context/loginContext.jsx'
 import { useNavigate } from 'react-router-dom'
@@ -90,7 +90,7 @@ export const Portatiles3 = ({ props }) => {
         />
 
       </div>
-      <Tabla portatiles={currentItems}/>
+      <TablaPortatiles portatiles={currentItems}/>
     </>
 
   )

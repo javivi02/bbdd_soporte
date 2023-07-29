@@ -19,14 +19,21 @@ export const Dashboard = () => {
 
   return (
     <>
-      <div className="flex flex-col h-screen items-center pt-4">
-        <h1 className="text-4xl font-bold">BBDD SOPORTE</h1><span></span>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={handleLogout}>Logout
-        </button>
+      <div className="flex items-center pt-4 space-x-6 p-4">
 
-        <Link to={'/portatiles'}>Portatiles</Link>
-        <Link to={'/portatiles2'}>Portatiles2</Link>
+        <div className="hover:transition hover:scale-105">
+          <Link to={'/portatiles2'} href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">PORTATILES</h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+          </Link>
+        </div>
+
+        <div className="hover:transition hover:scale-105">
+          <Link to={'/prestamos'} href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">PRÉSTAMOS</h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+          </Link>
+        </div>
 
 
       </div>

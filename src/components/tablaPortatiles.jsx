@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Modal } from './modal.jsx'
 
-export const Tabla = ({ portatiles }) => {
+export const TablaPortatiles = ({ portatiles }) => {
 
   const [showModal, setShowModal] = useState(false)
   const [ID, setID] = useState()
@@ -18,21 +18,21 @@ export const Tabla = ({ portatiles }) => {
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th className="px-4 py-3 w-1">
+            <th className="px-4 py-3 w-12">
               <input
                 type="checkbox"/>
             </th>
-            <th scope="col" className="px-4 py-3 w-2">
+            <th scope="col" className="px-4 py-3 w-56">
               Portatil
             </th>
-            <th scope="col" className="px-6 py-3 w-2">
+            <th scope="col" className="px-4 py-3 w-56">
+              Modelo
+            </th>
+            <th scope="col" className="px-6 py-3">
               Direccion IP
             </th>
-            <th scope="col" className="px-6 py-3 w-1">
+            <th scope="col" className="px-2 py-3 w-36">
               Pool
-            </th>
-            <th scope="col" className="px-6 py-3 w-3 overflow-x-hidden overflow-y-hidden">
-              Observaciones
             </th>
             <th scope="col" className="px-6 py-3 w-1">
               <span className="sr-only">View</span>
@@ -45,25 +45,31 @@ export const Tabla = ({ portatiles }) => {
           <tbody>
 
           {
-            portatiles?.map(({ PortatilID, Portatil, Direccion_ip_torre, Pool, Observaciones }) => {
+            portatiles?.map(({ PortatilID, Portatil, Direccion_ip_torre, Pool, Modelo }) => {
               return (
                 <tr key={PortatilID}
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
                   <td className="px-4 py-4">
                     <input
+                      onChange={() => console.log(PortatilID)}
                       type="checkbox"/>
                   </td>
-                  <td scope="row" className="px-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <td scope="row" className="px-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
                     {Portatil}
                   </td>
-                  <td className="px-6 py-4 w-2">
+                  <td scope="row" className="px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white ">
+                    {Modelo}
+                  </td>
+                  <td className="px-6 py-4 w-36">
                     {Direccion_ip_torre}
                   </td>
-                  <td className="px-6 py-4 w-2">
-                    {Pool}
-                  </td>
-                  <td className="px-6 py-4 w-3">
-                    {Observaciones}
+                  <td className="px-4 py-4 w-36">
+                    <input
+                      type="checkbox"
+                      disabled={true}
+
+                      defaultChecked={Pool}
+                    />
                   </td>
 
                   <td className="px-6 py-4 text-right w-1">

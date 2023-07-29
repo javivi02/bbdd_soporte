@@ -1,16 +1,23 @@
 import { useContext, useEffect, useState } from 'react'
 import { getPortatil } from '../service/portatil.js'
 import { LoginContext } from '../context/loginContext.jsx'
+import { useNavigate } from 'react-router-dom'
 
 export const Modal = ({ setShowModal, PortatilID }) => {
 
+  const navigate = useNavigate()
   const { user: { token } } = useContext(LoginContext)
   const [portatil, setPortatil] = useState({})
 
   console.log(portatil)
 
   useEffect(() => {
-    getPortatil(token, PortatilID).then(setPortatil)
+    getPortatil(token, PortatilID)
+      .then(setPortatil)
+      .catch(() => {
+        console.log('Toquen expirado, redirigir a login')
+        navigate('/login', { replace: true })
+      })
   }, [])
 
   return (
