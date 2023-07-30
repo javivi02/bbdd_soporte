@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { signIn } from '../service/login.js'
+import { signIn } from '../service/loginService.js'
 import { useNavigate } from 'react-router-dom'
 import { LoginContext } from '../context/loginContext.jsx'
 

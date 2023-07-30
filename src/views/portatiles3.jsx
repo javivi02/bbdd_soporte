@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { TablaPortatiles } from '../components/tablaPortatiles.jsx'
-import { getPortatiles } from '../service/portatiles.js'
+import { getPortatiles } from '../service/portatilesService.js'
 import { LoginContext } from '../context/loginContext.jsx'
 import { useNavigate } from 'react-router-dom'
 

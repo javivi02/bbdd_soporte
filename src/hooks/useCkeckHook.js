@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { checkJWT } from '../service/check.js'
+import { checkJWT } from '../service/checkService.js'
 
 export const UseCkeckHook = (token) => {
 

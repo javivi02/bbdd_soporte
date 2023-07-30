@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { getPortatil } from '../service/portatil.js'
+import { getPortatil } from '../service/portatilService.js'
 import { LoginContext } from '../context/loginContext.jsx'
 import { useNavigate } from 'react-router-dom'
 

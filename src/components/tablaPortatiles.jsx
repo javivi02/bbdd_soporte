@@ -22,16 +22,16 @@ export const TablaPortatiles = ({ portatiles }) => {
               <input
                 type="checkbox"/>
             </th>
-            <th scope="col" className="px-4 py-3 w-56">
+            <th scope="col" className="px-4 py-3 w-56 text-base">
               Portatil
             </th>
-            <th scope="col" className="px-4 py-3 w-56">
+            <th scope="col" className="px-4 py-3 w-56 text-base">
               Modelo
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 text-base">
               Direccion IP
             </th>
-            <th scope="col" className="px-2 py-3 w-36">
+            <th scope="col" className="px-2 py-3 w-36 text-base">
               Pool
             </th>
             <th scope="col" className="px-6 py-3 w-1">
@@ -54,16 +54,16 @@ export const TablaPortatiles = ({ portatiles }) => {
                       onChange={() => console.log(PortatilID)}
                       type="checkbox"/>
                   </td>
-                  <td scope="row" className="px-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
+                  <td scope="row" className="px-4 py-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white ">
                     {Portatil}
                   </td>
-                  <td scope="row" className="px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white ">
+                  <td scope="row" className="px-4 py-4 text-base text-gray-900 whitespace-nowrap dark:text-white ">
                     {Modelo}
                   </td>
-                  <td className="px-6 py-4 w-36">
+                  <td className="px-6 py-4 w-36 text-base">
                     {Direccion_ip_torre}
                   </td>
-                  <td className="px-4 py-4 w-36">
+                  <td className="px-4 py-4 w-36 text-base">
                     <input
                       type="checkbox"
                       disabled={true}

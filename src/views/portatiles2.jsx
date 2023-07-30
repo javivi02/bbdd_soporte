@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { TablaPortatiles } from '../components/tablaPortatiles.jsx'
-import { getPortatiles } from '../service/portatiles.js'
+import { getPortatiles } from '../service/portatilesService.js'
 import { LoginContext } from '../context/loginContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import { Loading } from '../components/loading.jsx'
@@ -14,6 +14,7 @@ export const Portatiles2 = ({ props }) => {
   const { user: { Usuario, token } } = useContext(LoginContext)
   const [portatiles, setPortatiles] = useState([])
   const [loading, setLoading] = useState(true)
+  const [buscar, setBuscar] = useState('')
 
   useEffect(() => {
 
@@ -30,8 +31,6 @@ export const Portatiles2 = ({ props }) => {
 
   }, [])
 
-
-
   const filtroPortatiles = () => {
 
     if (buscar.length === 0) {
@@ -41,8 +40,11 @@ export const Portatiles2 = ({ props }) => {
     return portatiles.filter(portatil => portatil.Portatil.toLowerCase().includes(buscar.toLowerCase()))
 
   }
+  const handleBuscar = ({ target }) => {
+    //setCurrentPage(1)
+    setBuscar(target.value)
+  }
 
-  const [buscar, setBuscar] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const recordPage = 10
   const lastIndex = currentPage * recordPage
@@ -51,10 +53,6 @@ export const Portatiles2 = ({ props }) => {
   const npage = Math.ceil(filtroPortatiles().length / recordPage)
   const numbers = [...Array(npage + 1).keys()].slice(1)
 
-  const handleBuscar = ({ target }) => {
-    setCurrentPage(1)
-    setBuscar(target.value)
-  }
 
   const paginaSiguiente = () => {
     if (currentPage < npage) {

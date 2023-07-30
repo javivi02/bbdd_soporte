@@ -1,16 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { TablaPortatiles } from '../components/tablaPortatiles.jsx'
-import { getPortatiles } from '../service/portatilesService.js'
-import { LoginContext } from '../context/loginContext.jsx'
 import { useNavigate } from 'react-router-dom'
-import { Paginacion } from '../components/paginacion.jsx'
-import { Loading } from '../components/loading.jsx'
+import React, { useContext, useEffect, useState } from 'react'
+import { LoginContext } from '../context/loginContext.jsx'
 import { usePagination } from '../hooks/usePagination.js'
+import { Loading } from '../components/loading.jsx'
+import { TablaPortatiles } from '../components/tablaPortatiles.jsx'
+import { Paginacion } from '../components/paginacion.jsx'
+import { getPortatilesStock } from '../service/portatilesStockService.js'
 
-export const Portatiles = ({ props }) => {
-
-  //const { Usuario, token } = useLocalStorage('user', {})
-  //const { Usuario, token, setUser } = useUser()
+export const PortatilesStock = () => {
 
   const navigate = useNavigate()
   const { user: { Usuario, token } } = useContext(LoginContext)
@@ -20,7 +17,7 @@ export const Portatiles = ({ props }) => {
 
   useEffect(() => {
 
-    getPortatiles(token)
+    getPortatilesStock(token)
       .then((data) => {
         setPortatiles(data)
         setLoading(false)
@@ -73,6 +70,4 @@ export const Portatiles = ({ props }) => {
     </>
 
   )
-
 }
-
