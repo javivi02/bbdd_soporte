@@ -3,35 +3,61 @@ import { getPortatilesStock } from '../service/portatilesStockService.js'
 import { LoginContext } from '../context/loginContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import { getPrestamo } from '../service/prestamoService.js'
+import { Loading } from './loading.jsx'
+import { HeadBodyGrid } from './skeleton.jsx'
 
-export const ModalPrestamos = ({ setShowModal, PrestamosID }) => {
+export const ModalPrestamos = ({ setShowModal, PrestamosID, editar }) => {
 
   const navigate = useNavigate()
   const { user: { token } } = useContext(LoginContext)
 
-  const [portatilesStock, setPortatilesStock] = useState([{ PortatilID: null, Portatil: 'Seleccione un portatil' }])
+  const [portatilesStock, setPortatilesStock] = useState([{ PortatilID: null, Portatil: 'Seleccione un equipamiento' }])
   const [prestamo, setPrestamo] = useState({})
+  const [loading, setLoading] = useState(true)
 
   console.log(prestamo)
 
-  const { Entregado_a, PortatilID, Observaciones, Alimentacion, Nombre, Motivo, Email, Devolucion_prevista, Fecha_entrega, Fecha_devolucion } = prestamo
-
+  const {
+    Entregado_a,
+    Portatil,
+    PortatilID,
+    Observaciones,
+    Alimentacion,
+    Nombre,
+    Motivo,
+    Email,
+    Devolucion_prevista,
+    Fecha_entrega,
+    Fecha_devolucion
+  } = prestamo
 
   useEffect(() => {
 
-    getPrestamo(token, PrestamosID)
-      .then(setPrestamo)
-      .catch(() => {
-        console.log('Toquen expirado, redirigir a login')
-        navigate('/login', { replace: true })
-      })
+    if (editar) {
 
-    getPortatilesStock(token)
-      .then((data) => setPortatilesStock([...portatilesStock, ...data]))
-      .catch(() => {
-        console.log('Toquen expirado, redirigir a login')
-        navigate('/login', { replace: true })
-      })
+      getPrestamo(token, PrestamosID)
+        .then((data) => {
+          setPrestamo(data)
+          setLoading(false)
+        })
+        .catch(() => {
+          console.log('Toquen expirado, redirigir a login')
+          navigate('/login', { replace: true })
+        })
+
+    } else {
+
+      getPortatilesStock(token)
+        .then((data) => {
+          setPortatilesStock([...portatilesStock, ...data])
+          setLoading(false)
+        })
+        .catch(() => {
+          console.log('Toquen expirado, redirigir a login')
+          navigate('/login', { replace: true })
+        })
+    }
+
   }, [])
 
   const handelSubmit = (e) => {
@@ -43,7 +69,7 @@ export const ModalPrestamos = ({ setShowModal, PrestamosID }) => {
   }
 
   const formatoFecha = (fecha) => {
-    if(fecha === undefined || fecha === null) return undefined
+    if (fecha === undefined || fecha === null) return undefined
     const fechaArray = fecha.split('T')
     const fechaFormateada = fechaArray[0].split('-')
     return fechaFormateada[0] + '-' + fechaFormateada[1] + '-' + fechaFormateada[2]
@@ -53,6 +79,7 @@ export const ModalPrestamos = ({ setShowModal, PrestamosID }) => {
   const fecha_entrega = formatoFecha(Fecha_entrega) ?? ''
   const fecha_devolucion = formatoFecha(Fecha_devolucion) ?? ''
 
+  if (loading) return <Loading/>
 
   return (
 
@@ -61,39 +88,22 @@ export const ModalPrestamos = ({ setShowModal, PrestamosID }) => {
         className={`flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none backdrop-blur-sm`}>
         <div className="relative w-full max-w-2xl max-h-full">
 
-          <div className="relative bg-white rounded-lg shadow dark:bg-gray-800 shadow">
+          <div className="relative bg-white rounded-lg shadow dark:bg-gray-800">
 
-            <div className="flex items-start justify-between p-4 border-b-4 rounded-t dark:border-blue-500">
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                Añadir nuevo préstamo - {prestamo?.PrestamosID}
-              </h3>
+            <div className="items-start p-4 border-b-4 rounded-t dark:border-blue-500">
+              <div className="flex items-center justify-between text-gray-900 dark:text-white">
+                <h3 className={'text-3xl font-bold tracking-tight'}>
+                  {editar ? 'Editar equipamiento ' + Portatil : 'Añadir nuevo préstamo'}
+                </h3>
 
-              <button
-                onClick={() => setShowModal(false)}
-                type="button"
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  w-8 h-8 ml-auto inline-flex
-                      justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                data-modal-hide="defaultModal">
-                <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                     viewBox="0 0 14 14">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                </svg>
-                <span className="sr-only">Close modal</span>
-              </button>
-            </div>
-
-            <div className="px-4 mx-auto max-w-2xl mt-8">
-              <form action="#" onSubmit={handelSubmit}>
-                <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                {
+                  !editar &&
                   <div>
-                    <label htmlFor="Equipamiento"
-                           className="block mb-2  font-medium text-gray-900 dark:text-white">Equipamiento</label>
                     <select
+                      disabled={editar}
                       name="Equipamiento"
-                      defaultValue={''}
-                      className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-primary-500 focus:border-primary-500
-                      block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-primary-500
+                        block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                       {
                         portatilesStock?.map(({ PortatilID, Portatil }) =>
                           <option key={PortatilID} value={PortatilID}>{Portatil} </option>
@@ -101,6 +111,15 @@ export const ModalPrestamos = ({ setShowModal, PrestamosID }) => {
                       }
                     </select>
                   </div>
+                }
+
+              </div>
+            </div>
+
+            <div className="px-4 mx-auto max-w-2xl mt-8">
+              <form action="#" onSubmit={handelSubmit}>
+                <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+
                   <div>
                     <label htmlFor="Fecha_entrega"
                            className="block mb-2 font-medium text-gray-900 dark:text-white">
@@ -113,6 +132,7 @@ export const ModalPrestamos = ({ setShowModal, PrestamosID }) => {
                            dark:focus:border-primary-500"
                            required=""/>
                   </div>
+
 
                   <div className="w-full">
                     <label htmlFor="Entregado_a"
@@ -171,7 +191,7 @@ export const ModalPrestamos = ({ setShowModal, PrestamosID }) => {
                     data-modal-hide="defaultModal"
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  px-5
                 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Guardar
+                    {editar ? 'Actualizar' : 'Guardar'}
                   </button>
                   <button
                     onClick={() => setShowModal(false)}

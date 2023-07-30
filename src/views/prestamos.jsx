@@ -17,8 +17,8 @@ export const Prestamos = ({ props }) => {
   const [prestamos, setPrestamos] = useState([])
   const [loading, setLoading] = useState(true)
   const [buscar, setBuscar] = useState('')
-
-  //const { data, loading, error } = useFetch('http://localhost:3333/api/prestamos', token)
+  const [showModal, setShowModal] = useState(false)
+  const [editar, setEditar] = useState(false)
 
   useEffect(() => {
 
@@ -49,22 +49,45 @@ export const Prestamos = ({ props }) => {
     setBuscar(target.value)
   }
 
+  const handleNuevoPrestamo = () => {
+    setShowModal(true)
+    setEditar(false)
+  }
+
   if (loading) return <Loading/>
 
   return (
 
     <>
 
-      <div className={'flex mb-4 p-4 justify-between'}>
-        <h1 className="text-4xl font-bold ">{Usuario}<span> - {prestamos.length}</span></h1>
-        <input type="text"
-               value={buscar}
-               onChange={handleBuscar}
-               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Buscar ..."/>
+      <div className={'flex mb-4 p-4 justify-between items-center'}>
+        <div>
+          <button type="button"
+                  onClick={handleNuevoPrestamo}
+                  className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4
+                focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 rounded-lg text-lg px-5 py-2.5
+                text-center mr-2 mb-2 uppercase font-bold">
+            Añadir nuevo préstamo
+          </button>
+        </div>
+        <div>
+          <input type="text"
+                 value={buscar}
+                 onChange={handleBuscar}
+                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500
+               block dark:bg-gray-700 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+               dark:focus:border-blue-500"
+                 placeholder="Buscar ..."/>
+        </div>
       </div>
 
-      <TablaPrestamos prestamos={records}/>
+      <TablaPrestamos
+        prestamos={records}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        editar={editar}
+        setEditar={setEditar}
+      />
 
       <Paginacion
         currentPage={currentPage}

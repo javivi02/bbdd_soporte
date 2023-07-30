@@ -3,15 +3,15 @@ import { Modal } from './modal.jsx'
 import { useNavigate } from 'react-router-dom'
 import { ModalPrestamos } from './modalPrestamos.jsx'
 
-export const TablaPrestamos = ({ prestamos }) => {
+export const TablaPrestamos = ({ prestamos, showModal, setShowModal, editar, setEditar}) => {
 
-  const [showModal, setShowModal] = useState(false)
+
   const [ID, setID] = useState()
 
   const handleEdit = (PrestamosID) => {
     setShowModal(true)
     setID(PrestamosID)
-
+    setEditar(true)
   }
 
   const formatoFecha = (fecha) => {
@@ -68,7 +68,7 @@ export const TablaPrestamos = ({ prestamos }) => {
       </div>
 
       {
-        showModal && <ModalPrestamos setShowModal={setShowModal} PrestamosID={ID}/>
+        showModal && <ModalPrestamos setShowModal={setShowModal} PrestamosID={ID} editar={editar}/>
       }
 
     </>
