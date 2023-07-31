@@ -31,13 +31,13 @@ export const Paginacion = ({ currentPage, setCurrentPage, npage }) => {
 
   return (
 
-    <div className="flex justify-end">
+    <div className="flex justify-end mt-4">
 
       <ul className="flex items-center -space-x-px h-10 text-base p-4">
 
         <li>
 
-          <div className="mr-8 font-semibold">
+          <div className="mr-8 font-semibold text-black dark:text-white">
             Página {currentPage} de {npage}
           </div>
 

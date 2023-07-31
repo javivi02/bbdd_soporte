@@ -4,7 +4,6 @@ import { LoginContext } from '../context/loginContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import { getPrestamo } from '../service/prestamoService.js'
 import { Loading } from './loading.jsx'
-import { HeadBodyGrid } from './skeleton.jsx'
 
 export const ModalPrestamos = ({ setShowModal, PrestamosID, editar }) => {
 
