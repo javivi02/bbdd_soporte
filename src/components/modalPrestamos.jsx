@@ -11,7 +11,7 @@ export const ModalPrestamos = ({ setShowModal, PrestamosID, editar }) => {
   const navigate = useNavigate()
   const { user: { token } } = useContext(LoginContext)
 
-  const [portatilesStock, setPortatilesStock] = useState([{ PortatilID: null, Portatil: 'Seleccione un equipamiento' }])
+  const [portatilesStock, setPortatilesStock] = useState([{ PortatilID: null, Portatil: 'Seleccione equipamiento ...' }])
   const [prestamo, setPrestamo] = useState({})
   const [loading, setLoading] = useState(true)
 
@@ -84,16 +84,16 @@ export const ModalPrestamos = ({ setShowModal, PrestamosID, editar }) => {
   return (
 
     <>
-      <div
-        className={`flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none backdrop-blur-sm`}>
-        <div className="relative w-full max-w-2xl max-h-full">
+      <div className={`flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none backdrop-blur-sm`}>
+        <div className="relative w-full max-w-3xl max-h-full">
 
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-800">
 
             <div className="items-start p-4 border-b-4 rounded-t dark:border-blue-500">
               <div className="flex items-center justify-between text-gray-900 dark:text-white">
-                <h3 className={'text-3xl font-bold tracking-tight'}>
-                  {editar ? 'Editar equipamiento ' + Portatil : 'Añadir nuevo préstamo'}
+                <h3 className={'text-3xl font-medium tracking-tight'}>
+                  {editar ? <span>Editar equipamiento <span className="text-blue-400 font-bold">{Portatil}</span></span> : 'Añadir nuevo' +
+                    ' préstamo'}
                 </h3>
 
                 {
@@ -102,7 +102,7 @@ export const ModalPrestamos = ({ setShowModal, PrestamosID, editar }) => {
                     <select
                       disabled={editar}
                       name="Equipamiento"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-primary-500
+                      className="bg-gray-50 border border-gray-300 font-bold text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-primary-500
                         block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                       {
                         portatilesStock?.map(({ PortatilID, Portatil }) =>
@@ -116,7 +116,7 @@ export const ModalPrestamos = ({ setShowModal, PrestamosID, editar }) => {
               </div>
             </div>
 
-            <div className="px-4 mx-auto max-w-2xl mt-8">
+            <div className="mx-auto max-w-2xl mt-8">
               <form action="#" onSubmit={handelSubmit}>
                 <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
 

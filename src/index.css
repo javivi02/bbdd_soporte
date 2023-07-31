@@ -17,3 +17,12 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
 }
+
+/*Para el modo oscuro o claro en funcion del sistema operativo*/
+
+@media (prefers-color-scheme: dark) {
+    html {
+        color: #213547;
+        background-color: rgba(255, 255, 3, 0.95);
+    }
+}

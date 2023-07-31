@@ -28,7 +28,7 @@ export const TablaPrestamos = ({ prestamos, showModal, setShowModal, editar, set
 
         {
 
-          prestamos?.map(({ PrestamosID, PortatilID, Fecha_entrega, Portatil, Fecha_devolucion, Entregado_a, Telefono, Email, Usuario, Nombre, Area, Devolucion_prevista }) => {
+          prestamos?.map(({ PrestamosID, PortatilID, Observaciones, Fecha_entrega, Portatil, Fecha_devolucion, Entregado_a, Telefono, Email, Usuario, Nombre, Area, Devolucion_prevista }) => {
 
             const fechaEntrega = formatoFecha(Fecha_entrega)
             const fechaDevolicionPrevista = formatoFecha(Devolucion_prevista) ?? 'Sin fecha prevista'
@@ -37,16 +37,16 @@ export const TablaPrestamos = ({ prestamos, showModal, setShowModal, editar, set
             return (
 
               <div key={PrestamosID}
-                   className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700">
+                   className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-400 dark:hover:bg-gray-700">
                 <div className="flex space-x-4">
-                  <h4 className="mb-2 mr-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{(Portatil)}</h4>
+                  <h4 className="mb-2 mr-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-blue-400">{(Portatil)}</h4>
                   <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{fechaEntrega}</h5>
                   <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{fechaDevolicionPrevista}</h5>
                   <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{fechaDevolucion}</h5>
                 </div>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise
-                  technology
-                  acquisitions of 2021 so far, in reverse chronological order.</p>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  {Observaciones}
+                </p>
                 <button onClick={() => handleEdit(PrestamosID)}
                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                   Read more
