@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { Modal } from './modal.jsx'
+import { ModalPortatil } from './modalPortatil.jsx'
 
-export const TablaPortatiles = ({ portatiles }) => {
+export const TablaPortatiles = ({ portatiles, showModal, setShowModal, editar, setEditar }) => {
 
-  const [showModal, setShowModal] = useState(false)
   const [ID, setID] = useState()
 
-  const handleView = (PortatilID) => {
+  const handleEdit = (PortatilID) => {
     setShowModal(true)
     setID(PortatilID)
+    setEditar(true)
 
   }
 
@@ -51,8 +51,8 @@ export const TablaPortatiles = ({ portatiles }) => {
 
                   <td className="py-4 flex gap-2 w-24 ml-2">
 
-                    <button onClick={(() => handleView(PortatilID))}
-                            className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                    <button
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
 
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                            stroke="currentColor" className="w-5 h-5">
@@ -61,10 +61,14 @@ export const TablaPortatiles = ({ portatiles }) => {
                       </svg>
                     </button>
 
-                    <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                    <button
+                      onClick={(() => handleEdit(PortatilID))}
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
 
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
+                           stroke="currentColor" className="w-5 h-5">
+                        <path strokeLinecap="round" strokeLinejoin="round"
+                              d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
                       </svg>
 
                     </button>
@@ -114,7 +118,7 @@ export const TablaPortatiles = ({ portatiles }) => {
       </div>
 
       {
-        showModal && <Modal setShowModal={setShowModal} PortatilID={ID}/>
+        showModal && <ModalPortatil setShowModal={setShowModal} PortatilID={ID} editar={editar}/>
       }
     </>
   )

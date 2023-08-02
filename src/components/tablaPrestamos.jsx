@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { Modal } from './modal.jsx'
-import { useNavigate } from 'react-router-dom'
 import { ModalPrestamos } from './modalPrestamos.jsx'
 
 export const TablaPrestamos = ({ prestamos, showModal, setShowModal, editar, setEditar}) => {

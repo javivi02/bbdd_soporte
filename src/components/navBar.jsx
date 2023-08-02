@@ -29,7 +29,7 @@ export const NavBar = () => {
     <nav className="bg-gray-200 border-gray-200 dark:bg-gray-900 dark:border-gray-700 ">
       <div className="flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to={"/dashboard"} className="flex items-center">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/TVE.svg" className="h-12 mr-8" alt="Flowbite Logo" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/TVE.svg" className="h-12 mr-8" alt="Logo RTVE" />
           <span className="self-center text-2xl font-bold whitespace-nowrap text-blue-500 dark:text-white">BBDD SOPORTE</span>
         </Link>
 

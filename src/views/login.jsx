@@ -40,9 +40,7 @@ export const Login = () => {
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center px-6 py-8 mx-auto md:h-screen lg:py-10">
           <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-            <img className="w-8 h-8 mr-2"
-                 src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
-                 alt="logo"/>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/TVE.svg" className="h-12 mr-8" alt="Logo RTVE" />
             BBDD SOPORTE
           </a>
 
@@ -77,7 +75,7 @@ export const Login = () => {
                          required/>
                 </div>
                   <button type="submit"
-                          className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 dark:border-2 dark:hover:bg-blue-600">
+                          className="w-full text-black dark:text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-blue-400 dark:bg-primary-600 dark:hover:bg-primary-700 hover:text-white hover:border-blue-400 focus:ring-primary-800 dark:focus:ring-primary-800 border-2 dark:border-2 dark:hover:bg-blue-600">
                     Sign in
                   </button>
 
