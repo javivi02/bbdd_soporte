@@ -83,7 +83,7 @@ export const ModalPortatil = ({ setShowModal, PortatilID, editar }) => {
 
             <div className="mx-auto max-w-2xl mt-8">
               <form action="#" onSubmit={handelSubmit}>
-                <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-6">
+                <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 mb-8">
 
                   <div>
                     <label htmlFor="Portatil"
@@ -175,8 +175,44 @@ export const ModalPortatil = ({ setShowModal, PortatilID, editar }) => {
                            dark:focus:border-primary-500"
                            required=""/>
                   </div>
+                </div>
 
+                <div className="grid gap-4 sm:grid-cols-3 mb-6">
 
+                  <div className="flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700">
+                    <input id="bordered-checkbox-1"
+                           type="checkbox"
+                           checked={Pool ?? false}
+                           value=""
+                           name="Pool"
+                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
+                           dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+                    <label htmlFor="bordered-checkbox-1"
+                           className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                      Pool</label>
+                  </div>
+
+                  <div className="flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700">
+                    <input id="bordered-checkbox-1"
+                           type="checkbox"
+                           checked={Desafectado ?? false}
+                           value=""
+                           name="Desacfectado"
+                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
+                           dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+                    <label htmlFor="bordered-checkbox-1"
+                           className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Desacfectado</label>
+                  </div>
+
+                  <div className="flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700">
+                    <input checked={Edicion ?? false}
+                           id="bordered-checkbox-2" type="checkbox" value="" name="Edicion"
+                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
+                           dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+                    <label htmlFor="bordered-checkbox-2"
+                           className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Edicion
+                    </label>
+                  </div>
 
                 </div>
 
