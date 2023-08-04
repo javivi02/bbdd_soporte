@@ -33,7 +33,7 @@ export const Portatiles = ({ props }) => {
         navigate('/login', { replace: true })
       })
 
-  }, [])
+  }, [showModal])
 
   const filtro = () => {
 

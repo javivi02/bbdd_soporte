@@ -3,6 +3,8 @@ import { getPortatil } from '../service/portatilService.js'
 import { LoginContext } from '../context/loginContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import { Loading } from './loading.jsx'
+import { updatePortatil } from '../service/updatePortatilService.js'
+import toast from 'react-hot-toast'
 
 export const ModalPortatil = ({ setShowModal, PortatilID, editar }) => {
 
@@ -48,10 +50,28 @@ export const ModalPortatil = ({ setShowModal, PortatilID, editar }) => {
 
   const handelSubmit = (e) => {
     e.preventDefault()
-    console.log('submit')
+
     const fields = new window.FormData(e.target)
     const data = Object.fromEntries(fields)
-    console.log(data)
+
+    data.Pool = data.Pool === 'on' ? 1 : 0
+    data.Desafectado = data.Desafectado === 'on' ? 1 : 0
+    data.Edicion = data.Edicion === 'on' ? 1 : 0
+
+    updatePortatil(token, PortatilID, data)
+      .then(respuesta => {
+        if (respuesta.length === 0) {
+          toast.error('Error al actualizar el portatil')
+          return
+        }
+        setShowModal(false)
+        toast.success('Portatil actualizado correctamente')
+      })
+      .catch(error => {
+        console.log(error)
+        toast.error('Error al actualizar el portatil')
+      })
+
   }
 
   if (loading) return <Loading/>
@@ -183,11 +203,10 @@ export const ModalPortatil = ({ setShowModal, PortatilID, editar }) => {
                     <input id="bordered-checkbox-1"
                            type="checkbox"
                            defaultChecked={Pool ?? false}
-                           value=""
                            name="Pool"
                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
                            dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                    <label htmlFor="bordered-checkbox-1"
+                    <label htmlFor="Pool"
                            className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                       Pool</label>
                   </div>
@@ -195,21 +214,22 @@ export const ModalPortatil = ({ setShowModal, PortatilID, editar }) => {
                   <div className="flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700">
                     <input id="bordered-checkbox-1"
                            type="checkbox"
-                           defaultChecked={ Desafectado ?? false}
-                           value=""
-                           name="Desacfectado"
+                           defaultChecked={Desafectado ?? false}
+                           name="Desafectado"
                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
                            dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                    <label htmlFor="bordered-checkbox-1"
-                           className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Desacfectado</label>
+                    <label htmlFor="Desafectado"
+                           className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Desafectado</label>
                   </div>
 
                   <div className="flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700">
                     <input defaultChecked={Edicion ?? false}
-                           id="bordered-checkbox-2" type="checkbox" value="" name="Edicion"
+                           id="bordered-checkbox-2"
+                           type="checkbox"
+                           name="Edicion"
                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
                            dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                    <label htmlFor="bordered-checkbox-2"
+                    <label htmlFor="Edicion"
                            className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Edicion
                     </label>
                   </div>

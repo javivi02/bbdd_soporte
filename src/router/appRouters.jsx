@@ -3,7 +3,7 @@ import { Login } from '../views/login.jsx'
 import { LoginContextProvider } from '../context/loginContext.jsx'
 import { PrivateRoute } from './privateRoute.jsx'
 import { BbddRoutes } from './bbddRoutes.jsx'
-
+import { Toaster } from 'react-hot-toast'
 
 export const AppRouters = () => {
 
@@ -11,13 +11,14 @@ export const AppRouters = () => {
     <>
 
       <BrowserRouter>
+        <div><Toaster/></div>
 
         <LoginContextProvider>
 
           <Routes>
 
             <Route path="/login" element={
-                <Login/>
+              <Login/>
             }/>
 
             <Route path="/*" element={
