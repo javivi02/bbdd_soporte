@@ -182,7 +182,7 @@ export const ModalPortatil = ({ setShowModal, PortatilID, editar }) => {
                   <div className="flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700">
                     <input id="bordered-checkbox-1"
                            type="checkbox"
-                           checked={Pool ?? false}
+                           defaultChecked={Pool ?? false}
                            value=""
                            name="Pool"
                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
@@ -195,7 +195,7 @@ export const ModalPortatil = ({ setShowModal, PortatilID, editar }) => {
                   <div className="flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700">
                     <input id="bordered-checkbox-1"
                            type="checkbox"
-                           checked={Desafectado ?? false}
+                           defaultChecked={ Desafectado ?? false}
                            value=""
                            name="Desacfectado"
                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
@@ -205,7 +205,7 @@ export const ModalPortatil = ({ setShowModal, PortatilID, editar }) => {
                   </div>
 
                   <div className="flex items-center pl-4 border border-gray-200 rounded-lg dark:border-gray-700">
-                    <input checked={Edicion ?? false}
+                    <input defaultChecked={Edicion ?? false}
                            id="bordered-checkbox-2" type="checkbox" value="" name="Edicion"
                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
                            dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
