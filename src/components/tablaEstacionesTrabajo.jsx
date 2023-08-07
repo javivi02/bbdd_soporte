@@ -31,7 +31,7 @@ export const TablaEstacionesTrabajo = ({
 
   }
 
-  console.log(isCheck)
+  // console.log(isCheck)
 
   return (
 

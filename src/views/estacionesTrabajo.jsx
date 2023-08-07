@@ -17,7 +17,7 @@ export const EstacionesTrabajo = ({ props }) => {
   const navigate = useNavigate()
   const { user: { Usuario, token } } = useContext(LoginContext)
   const [estacionesTrabajo, setEstacionesTrabajo] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [buscar, setBuscar] = useState('')
   const [showModal, setShowModal] = useState(false)
   const [editar, setEditar] = useState(false)
@@ -28,17 +28,21 @@ export const EstacionesTrabajo = ({ props }) => {
   // console.log(estacionesTrabajo)
 
   useEffect(() => {
+    setLoading(true)
 
     getEstacionesTrabajo(token)
       .then((data) => {
         setEstacionesTrabajo(data)
-        setLoading(false)
 
       })
       .catch(() => {
         console.log('Toquen expirado, redirigir a login')
         navigate('/login', { replace: true })
       })
+      .finally(() => {
+      setLoading(false)
+    })
+
 
   }, [showModal])
 
