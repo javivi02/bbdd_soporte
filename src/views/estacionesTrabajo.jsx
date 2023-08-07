@@ -22,6 +22,11 @@ export const EstacionesTrabajo = ({ props }) => {
   const [showModal, setShowModal] = useState(false)
   const [editar, setEditar] = useState(false)
 
+  const [isCheck, setIsCheck] = useState([])
+  const [isCheckAll, setIsCheckAll] = useState(false)
+
+  // console.log(estacionesTrabajo)
+
   useEffect(() => {
 
     getEstacionesTrabajo(token)
@@ -37,6 +42,7 @@ export const EstacionesTrabajo = ({ props }) => {
 
   }, [showModal])
 
+
   const filtro = () => {
 
     if (buscar.length === 0) return estacionesTrabajo
@@ -46,12 +52,17 @@ export const EstacionesTrabajo = ({ props }) => {
 
   const { currentPage, setCurrentPage, records, npage } = usePagination(10, filtro())
 
+  useEffect(() => {
+    setIsCheck([])
+    setIsCheckAll(false)
+  }, [currentPage])
+
   const handleBuscar = ({ target }) => {
     setCurrentPage(1)
     setBuscar(target.value)
   }
 
-  const handleNuevoPrestamo = () => {
+  const handleNuevo = () => {
     setShowModal(true)
     setEditar(false)
   }
@@ -64,11 +75,11 @@ export const EstacionesTrabajo = ({ props }) => {
       <div className={'flex mb-4 p-4 justify-between items-center'}>
         <div>
           <button type="button"
-                  onClick={handleNuevoPrestamo}
+                  onClick={handleNuevo}
                   className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4
                 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 rounded-lg text-lg px-5 py-2.5
                 text-center mr-2 mb-2 uppercase font-bold">
-            Añadir nuevo portatil
+            Añadir nuevo estación de trabajo
           </button>
         </div>
         <div>
@@ -88,6 +99,10 @@ export const EstacionesTrabajo = ({ props }) => {
         setShowModal={setShowModal}
         editar={editar}
         setEditar={setEditar}
+        isCheck={isCheck}
+        setIsCheck={setIsCheck}
+        isCheckAll={isCheckAll}
+        setIsCheckAll={setIsCheckAll}
       />
 
       <Paginacion
