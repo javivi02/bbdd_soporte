@@ -4,7 +4,8 @@ import { LoginContext } from '../context/loginContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import { Loading } from './loading.jsx'
 import { updatePortatil } from '../service/updatePortatilService.js'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
+import confetti from 'canvas-confetti'
 
 export const ModalPortatil = ({ setShowModal, PortatilID, editar }) => {
 
@@ -66,6 +67,12 @@ export const ModalPortatil = ({ setShowModal, PortatilID, editar }) => {
         }
         setShowModal(false)
         toast.success('Portatil actualizado correctamente')
+        confetti({
+          particleCount: 100,
+          startVelocity: 30,
+          spread: 360,
+          origin: { x: 0.5, }
+        })
       })
       .catch(error => {
         console.log(error)

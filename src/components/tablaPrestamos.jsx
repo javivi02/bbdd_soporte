@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { ModalPrestamos } from './modalPrestamos.jsx'
 
-export const TablaPrestamos = ({ prestamos, showModal, setShowModal, editar, setEditar}) => {
-
+export const TablaPrestamos = ({ prestamos, showModal, setShowModal, editar, setEditar }) => {
 
   const [ID, setID] = useState()
 
@@ -13,7 +12,7 @@ export const TablaPrestamos = ({ prestamos, showModal, setShowModal, editar, set
   }
 
   const formatoFecha = (fecha) => {
-    if(fecha === null) return undefined
+    if (fecha === null) return undefined
     const fechaArray = fecha.split('T')
     const fechaFormateada = fechaArray[0].split('-')
     return fechaFormateada[2] + '/' + fechaFormateada[1] + '/' + fechaFormateada[0]
@@ -26,7 +25,21 @@ export const TablaPrestamos = ({ prestamos, showModal, setShowModal, editar, set
 
         {
 
-          prestamos?.map(({ PrestamosID, PortatilID, Observaciones, Fecha_entrega, Portatil, Fecha_devolucion, Entregado_a, Telefono, Email, Usuario, Nombre, Area, Devolucion_prevista }) => {
+          prestamos?.map(({
+            PrestamosID,
+            PortatilID,
+            Observaciones,
+            Fecha_entrega,
+            Portatil,
+            Fecha_devolucion,
+            Entregado_a,
+            Telefono,
+            Email,
+            Usuario,
+            Nombre,
+            Area,
+            Devolucion_prevista
+          }) => {
 
             const fechaEntrega = formatoFecha(Fecha_entrega)
             const fechaDevolicionPrevista = formatoFecha(Devolucion_prevista) ?? 'Sin fecha prevista'
@@ -37,16 +50,20 @@ export const TablaPrestamos = ({ prestamos, showModal, setShowModal, editar, set
               <div key={PrestamosID}
                    className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-400 dark:hover:bg-gray-700">
                 <div className="flex space-x-4">
-                  <h4 className="mb-2 mr-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-blue-400">{(Portatil)}</h4>
-                  <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{fechaEntrega}</h5>
-                  <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{fechaDevolicionPrevista}</h5>
-                  <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{fechaDevolucion}</h5>
+                  <h4
+                    className="mb-2 mr-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-blue-400">{(Portatil)}</h4>
+                  <h5
+                    className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{fechaEntrega}</h5>
+                  <h5
+                    className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{fechaDevolicionPrevista}</h5>
+                  <h5
+                    className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{fechaDevolucion}</h5>
                 </div>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   {Observaciones}
                 </p>
                 <button onClick={() => handleEdit(PrestamosID)}
-                   className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                   Read more
                   <svg className="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                        fill="none"

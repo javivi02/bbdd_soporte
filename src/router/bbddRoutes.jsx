@@ -6,6 +6,7 @@ import { Portatiles } from '../views/portatiles.jsx'
 import { PortatilesStock } from '../views/portatilesStock.jsx'
 import { ModalPrestamos } from '../components/modalPrestamos.jsx'
 import { EstacionesTrabajo } from '../views/estacionesTrabajo.jsx'
+import { Portatiles3 } from '../views/portatiles3.jsx'
 
 export const BbddRoutes = () => {
 
@@ -22,6 +23,7 @@ export const BbddRoutes = () => {
         <Route path="/estacionesTrabajo" element={<EstacionesTrabajo/>}/>
         <Route path="/prestamos" element={<Prestamos/>}/>
         <Route path="/portatilesStock" element={<PortatilesStock/>}/>
+        <Route path="/portatiles3" element={<Portatiles3/>}/>
         <Route path="/modal" element={<ModalPrestamos/>}/>
       </Routes>
 

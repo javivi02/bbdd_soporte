@@ -8,6 +8,7 @@ import { Loading } from '../components/loading.jsx'
 import { usePagination } from '../hooks/usePagination.js'
 import { getEstacionesTrabajo } from '../service/estacionesTrabajoService.js'
 import { TablaEstacionesTrabajo } from '../components/tablaEstacionesTrabajo.jsx'
+import confetti from 'canvas-confetti'
 
 export const EstacionesTrabajo = ({ props }) => {
 
@@ -40,12 +41,10 @@ export const EstacionesTrabajo = ({ props }) => {
         navigate('/login', { replace: true })
       })
       .finally(() => {
-      setLoading(false)
-    })
-
+        setLoading(false)
+      })
 
   }, [showModal])
-
 
   const filtro = () => {
 
@@ -69,6 +68,13 @@ export const EstacionesTrabajo = ({ props }) => {
   const handleNuevo = () => {
     setShowModal(true)
     setEditar(false)
+
+    confetti({
+      particleCount: 100,
+      startVelocity: 30,
+      spread: 360,
+      origin: { x: 0.5, y: 0.2 },
+    })
   }
 
   if (loading) return <Loading/>
